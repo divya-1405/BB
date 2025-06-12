@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BetweenBreaks - Your Career Partner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <style>
+        /* Base Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #FFFACD; /* Lemon Chiffon */
+            color: #222;
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        }
+
+        /* Utility Classes */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            margin-bottom: 25px;
+            color: #000222;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after { /* Underline effect */
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background-color: #FFD700; /* Gold underline */
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #FFD700; /* Gold */
+            color: #000222;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #FFA500; /* Orange */
+            transform: translateY(-2px);
+        }
+
+        /* Navbar */
+        .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #000222; /* Very Dark Blue */
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar .logo img {
+      height:65px; /* Default size for desktop */
+      width: auto;
+      transition: all 0.3s ease;
+      border-radius: 50%; /* Make logo round if preferred */
+    }
+
+    .navbar nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar nav .dropdown {
+      position: relative;
+      margin: 0 15px;
+    }
+
+    .navbar nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      padding: 10px 12px;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .navbar nav a:hover {
+      color: #FFD700; /* Gold for hover */
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none; /* Hidden by default on desktop */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001; /* Ensure it's above the mobile nav when active */
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        /* Animation for hamburger icon when active */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Dropdown Content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0; /* Align dropdown to the left of the parent */
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly more opaque */
+            min-width: 180px;
+            z-index: 1001;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px); /* Frosted glass effect */
+            border-radius: 8px;
+            overflow: hidden; /* Ensures border-radius applies to children */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 15px;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #333;
+            color: #FFD700;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Banner Section */
+        .banner {
+            margin-top: 90px; /* Adjust for fixed navbar height */
+            position: relative;
+            width: 100%;
+            max-width: 1600px; /* Slightly wider max-width */
+            height: 600px;
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFACD; /* Ensure background if no image */
+            border-radius: 10px; /* Slightly rounded corners for the banner */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .slides {
+            display: flex;
+            width: 300%; /* For 3 slides */
+            height: 100%;
+            animation: slideShow 15s infinite ease-in-out; /* Slower, smoother animation */
+        }
+
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative; /* For overlay */
+        }
+
+        .slide::after { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        @keyframes slideShow {
+            0% { transform: translateX(0%); }
+            25% { transform: translateX(0%); } /* Hold first slide */
+            33% { transform: translateX(-100%); }
+            58% { transform: translateX(-100%); } /* Hold second slide */
+            66% { transform: translateX(-200%); }
+            91% { transform: translateX(-200%); } /* Hold third slide */
+            100% { transform: translateX(0%); }
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%; /* Center vertically */
+            left: 10%;
+            transform: translateY(-50%); /* Adjust for vertical centering */
+            color: white;
+            max-width: 550px;
+            z-index: 10; /* Ensure text is above overlay */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3); /* Subtle background for text */
+            border-radius: 8px;
+            animation: fadeIn 1s ease-out; /* Fade in animation for text */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-70%); }
+            to { opacity: 1; transform: translateY(-50%); }
+        }
+
+        .banner-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .banner-text h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+        
+
+        /* Intro Section */
+        .intro {
+            padding: 80px 30px;
+            text-align: center;
+            background-color: #FFFACD;
+        }
+
+        .intro-content p {
+            font-size: 19px;
+            margin-bottom: 60px; /* More space below paragraph */
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px; /* Increased gap */
+            margin-top: 30px;
+        }
+
+        .highlight {
+            background: white; /* White background for cards */
+            padding: 30px;
+            width: 320px; /* Slightly wider cards */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Softer, larger shadow */
+            border-radius: 12px; /* More rounded corners */
+            text-align: left; /* Align text left within cards */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-top: 5px solid #FFD700; /* Top border accent */
+        }
+
+        .highlight:hover {
+            transform: translateY(-8px); /* Lift on hover */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* More prominent shadow on hover */
+        }
+
+        .highlight h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #000222; /* Dark blue heading */
+        }
+
+        .highlight p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 0; /* Reset default paragraph margin */
+        }
+
+        /* --- NEW SECTIONS STYLES --- */
+
+        /* How It Works Section */
+        .how-it-works-section {
+            background-color: #F8F8F8; /* Light gray background */
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .how-it-works-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before { /* Decorative corner */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-top: 30px solid #FFD700;
+            border-right: 30px solid transparent;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+
+        .step-card .icon {
+            font-size: 45px;
+            color: #000222;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .step-card:hover .icon {
+            color: #FFD700;
+        }
+
+        .step-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: #000222;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: #000222;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #FFD700;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            color: #E0E0E0;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: #FFFACD;
+            text-align: center;
+        }
+
+        .testimonial-carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .testimonial-card p.quote {
+            font-size: 19px;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            position: relative;
+        }
+        .testimonial-card p.quote::before,
+        .testimonial-card p.quote::after {
+            font-family: 'Font Awesome 5 Free'; /* Using solid for quote marks */
+            font-weight: 900;
+            font-size: 2.5em;
+            color: #FFD700;
+            position: absolute;
+            opacity: 0.2;
+        }
+        .testimonial-card p.quote::before {
+            content: "\f10d"; /* fa-quote-left */
+            top: -10px;
+            left: 0;
+        }
+        .testimonial-card p.quote::after {
+            content: "\f10e"; /* fa-quote-right */
+            bottom: -10px;
+            right: 0;
+        }
+
+        .testimonial-card .author {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000222;
+        }
+
+        .testimonial-card .title {
+            font-size: 15px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .prev-btn {
+            left: 15px;
+        }
+
+        .next-btn {
+            right: 15px;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us-section {
+            background-color: #F8F8F8;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .why-choose-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .reason-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .reason-card .icon {
+            font-size: 40px;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .reason-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            color: #000222;
+            margin-bottom: 10px;
+        }
+
+        .reason-card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* FAQ Section */
+      
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: flex;
+            justify-content: center; /* Center items for larger screens too */
+            background-color: #000222; /* Dark background for footer */
+            color: white;
+            padding: 50px 30px;
+            margin-top: 80px; /* Space from previous section */
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Increased gap between contact items */
+            width: 100%;
+            max-width: 400px; /* Limit width */
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #FFD700;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Increased gap */
+            font-size: 18px;
+            color: white;
+            justify-content: center; /* Center contact items */
+        }
+
+        .contact-item img {
+            width: 28px; /* Larger icons */
+            height: 28px;
+            object-fit: contain;
+            filter: brightness(0) invert(1); /* Make icons white */
+        }
+
+        .contact-item a {
+            color: #ADD8E6; /* Light Blue for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #FFD700; /* Gold on hover */
+            text-decoration: underline;
+        }
+
+        /* Panel Overlays (Iframes) */
+        #contactPanel,
+        #aboutPanel,
+        #clientPanel,
+        #careerPanel,
+        #requestPanel,
+        #mediaPanel,
+        #addressPanel {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 250, 205, 0.95); /* Semi-transparent Lemon Chiffon */
+            backdrop-filter: blur(10px); /* Frosted glass effect for panels */
+            z-index: 999; /* Below navbar, above content */
+            transition: top 0.6s ease-out; /* Slower, smoother transition */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+            overflow-y: auto;
+            padding-top: 90px; /* Space for navbar */
+        }
+
+        iframe {
+            width: 100%;
+            height: calc(100vh - 90px); /* Adjust height for padding-top */
+            border: none;
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .navbar .logo img {
+                height: 70px; /* Larger size for mobile */
+            }
+
+
+            .navbar nav {
+                display: none; /* Hide default nav on mobile */
+                flex-direction: column;
+                position: fixed; /* Use fixed for full height mobile menu */
+                top: 70px; /* Below the navbar */
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 70px); /* Full height minus navbar */
+                background-color: rgba(0, 0, 0, 0.95); /* Darker background for mobile menu */
+                padding: 20px 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                transform: translateY(-100%);
+                transition: transform 0.4s ease-in-out;
+                overflow-y: auto; /* Enable scrolling if menu content overflows */
+            }
+
+            .navbar nav.active {
+                display: flex; /* Show nav when active */
+                transform: translateY(0); /* Slide in */
+            }
+
+            .navbar nav a,
+            .navbar nav .dropdown > a { /* Target top-level dropdown link */
+                text-align: center;
+                padding: 15px;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 18px;
+            }
+
+            .navbar nav .dropdown {
+                width: 100%;
+                margin: 0;
+            }
+
+            .dropdown-content {
+                position: static; /* Make dropdown content flow naturally in mobile menu */
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                box-shadow: none;
+                border-radius: 0;
+                border: none;
+                padding-left: 20px; /* Indent mobile dropdown content */
+            }
+
+            .dropdown-content a {
+                padding: 10px 30px; /* Further indent sub-items */
+                font-size: 16px;
+                border-bottom: none; /* No extra border for sub-items */
+            }
+
+            .menu-toggle {
+                display: flex; /* Show hamburger icon on mobile */
+            }
+
+            .banner {
+                margin-top: 70px; /* Adjust for mobile navbar height */
+                height: 400px; /* Shorter banner on mobile */
+                border-radius: 0; /* Remove banner radius on mobile */
+            }
+
+            .banner-text {
+                top: 50%;
+                left: 5%;
+                right: 5%; /* Allow text to span more width */
+                max-width: 90%;
+                transform: translateY(-50%);
+                text-align: center;
+                padding: 15px;
+            }
+
+            .banner-text h1 {
+                font-size: 36px;
+            }
+
+            .banner-text h2 {
+                font-size: 20px;
+            }
+
+            .intro {
+                padding: 60px 20px;
+            }
+
+            .intro-content p {
+                font-size: 17px;
+                margin-bottom: 40px;
+            }
+
+            .highlights {
+                flex-direction: column; /* Stack highlights on mobile */
+                align-items: center;
+                gap: 30px;
+            }
+
+            .highlight {
+                width: 90%; /* Almost full width */
+                padding: 25px;
+            }
+
+            /* New sections mobile adjustments */
+            .section-title {
+                font-size: 32px;
+            }
+            .how-it-works-section,
+            .cta-section,
+            .testimonials-section,
+            .why-choose-us-section,
+            .faq-section {
+                padding: 60px 0;
+            }
+            .step-card {
+                width: 90%;
+            }
+            .cta-section h2 {
+                font-size: 32px;
+            }
+            .cta-section p {
+                font-size: 18px;
+            }
+            .testimonial-card {
+                padding: 30px;
+            }
+            .testimonial-card p.quote {
+                font-size: 17px;
+            }
+            .carousel-nav-btn {
+                padding: 10px 15px;
+                font-size: 18px;
+            }
+            .why-choose-us-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .reason-card {
+                width: 90%;
+                margin: 0 auto;
+            }
+            .faq-question {
+                font-size: 16px;
+                padding: 15px 20px;
+            }
+            .faq-answer.active {
+                padding: 15px 20px;
+            }
+
+
+            .contact-wrapper {
+                padding: 40px 20px;
+            }
+
+            .contact-section {
+                max-width: 100%;
+            }
+
+            .contact-section h3 {
+                font-size: 24px;
+            }
+
+            .contact-item {
+                font-size: 16px;
+            }
+
+            /* Adjust panel padding for mobile */
+            #contactPanel,
+            #aboutPanel,
+            #clientPanel,
+            #careerPanel,
+            #requestPanel,
+            #mediaPanel,
+            #addressPanel {
+                padding-top: 70px;
+            }
+            iframe {
+                height: calc(100vh - 70px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-text h1 {
+                font-size: 28px;
+            }
+            .banner-text h2 {
+                font-size: 18px;
+            }
+            .intro-content h2, .section-title {
+                font-size: 28px;
+            }
+            .cta-section h2 {
+                font-size: 28px;
+            }
+            .testimonial-card p.quote {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsbdA5QdPSaq0409XEgJw3Rz-UHlDIVYIZqg&s" alt="BetweenBreaks Logo">
+        </div>
+        <nav id="mainNav">
+            <div class="dropdown"><a href="index.html">Home</a></div>
+            <div class="dropdown">
+                <a onclick="openAbout()">About us</a>
+                <div class="dropdown-content">
+                    <a onclick="openServiceSection()">Services</a><br>
+                    <a onclick="openPriceSection()">Prices</a><br>
+                    <a onclick="openPartnershipSection()">Partnership</a>
+                </div>
+            </div>
+            <div class="dropdown"><a onclick="openCareer()">Careers</a></div>
+            <a onclick="openClient()">Client stories</a>
+            <div class="dropdown">
+                <a onclick="openContact()">Contact us</a>
+            </div>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div class="slides">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&fit=crop&w=1555&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1555&q=80');"></div>
+            <div class="slide" style="background-image: url('https://www.hrmanagementapp.com/wp-content/uploads/2022/02/Software-Development-Team.png');"></div>
+        </div>
+        <div class="banner-text">
+            <h1>BetweenBreaks</h1>
+            <h2>Stop Getting Ignored. Start Getting Hired.</h2>
+        </div>
+    </div>
+
+    <section class="intro">
+        <div class="intro-content">
+            <h2 class="section-title">Your Career, Our Mission</h2>
+            <p>At <strong>BetweenBreaks</strong>, we empower job seekers to cut through the noise and land the roles they deserve. We craft powerful, ATS-friendly resumes and offer personalized strategies that get you seen, interviewed, and hired. Consider us your dedicated partner, armed with industry insights to fast-track your success in today's competitive job market.
+
+</p>
+            <div class="highlights">
+                <div class="highlight">
+                    <h3>ATS-Optimized Resumes</h3>
+                    <p>We craft resumes that pass automated filters, ensuring your application reaches human eyes and highlights your strengths effectively. Get noticed, not filtered out.</p>
+                </div>
+                <div class="highlight">
+                    <h3>Personalized Career Guidance</h3>
+                    <p>From goal setting and skill development to mock interviews and salary negotiation, we provide one-on-one coaching tailored to your unique career aspirations.</p>
+                </div>
+                <div class="highlight">
+                    <h3>Fast-Track Your Placement</h3>
+                    <p>Leverage our smart strategies and extensive network to accelerate your job search. We connect you with opportunities and prepare you to seize them with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works-section">
+        <div class="container">
+            <h2 class="section-title">How We Help You Succeed</h2>
+            <div class="how-it-works-steps">
+                <div class="step-card">
+                    <i class="fas fa-file-alt icon"></i>
+                    <h4>1. Resume & Cover Letter Mastery</h4>
+                    <p>We optimize your documents to get past ATS and impress hiring managers with compelling content.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-comments icon"></i>
+                    <h4>2. Personalized Coaching</h4>
+                    <p>Receive one-on-one guidance, mock interviews, and feedback tailored to your career goals.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-handshake icon"></i>
+                    <h4>3. Network & Placement Support</h4>
+                    <p>Unlock our network and strategies for finding hidden opportunities and securing interviews.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fas fa-trophy icon"></i>
+                    <h4>4. Successful Hiring</h4>
+                    <p>Land your dream job with confidence, knowing you have the tools and support to excel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Job Search?</h2>
+            <p>Don't let your dream job slip away. Our experts are here to guide you every step of the way.</p>
+            <button class="btn" onclick="openContact()">Get Started Today</button>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-carousel-container">
+                <div class="testimonial-carousel">
+                    <div class="testimonial-card">
+                        <p class="quote">"BetweenBreaks completely changed my job search. My resume finally started getting noticed, and their interview coaching was invaluable. I landed a fantastic role in just a few weeks!"</p>
+                        <div class="author">Priya Sharma</div>
+                        <div class="title">Software Engineer, Bengaluru</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="quote">"I was struggling to get interviews until I found BetweenBreaks. They helped me articulate my experience perfectly. Their team is truly dedicated to your success."</p>
+                        <div class="author">Rahul Gupta</div>
+                        <div class="title">Marketing Manager, Mumbai</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="quote">"The best investment I made in my career. The ATS optimization is a game-changer, and the personalized advice helped me negotiate a much better salary. Highly recommend!"</p>
+                        <div class="author">Sarah Khan</div>
+                        <div class="title">Product Designer, Hyderabad</div>
+                    </div>
+                </div>
+                <button class="carousel-nav-btn prev-btn" aria-label="Previous testimonial">&lsaquo;</button>
+                <button class="carousel-nav-btn next-btn" aria-label="Next testimonial">&rsaquo;</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose-us-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose BetweenBreaks?</h2>
+            <div class="why-choose-us-grid">
+                <div class="reason-card">
+                    <i class="fas fa-cogs icon"></i>
+                    <h4>Expert-Driven Strategies</h4>
+                    <p>Our team comprises seasoned HR professionals and career coaches with deep industry knowledge.</p>
+                </div>
+                <div class="reason-card">
+                    <i class="fas fa-hand-holding-heart icon"></i>
+                    <h4>Personalized Approach</h4>
+                    <p>We believe in custom solutions, not one-size-fits-all. Your unique career journey is our priority.</p>
+                </div>
+                <div class="reason-card">
+                    <i class="fas fa-chart-line icon"></i>
+                    <h4>Proven Track Record</h4>
+                    <p>Our clients consistently achieve higher interview rates and land their desired positions faster.</p>
+                </div>
+                <div class="reason-card">
+                    <i class="fas fa-shield-alt icon"></i>
+                    <h4>Confidential & Secure</h4>
+                    <p>Your personal information and career aspirations are handled with the utmost privacy and care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="contact-wrapper">
+        <div class="contact-section">
+            <h2>Still Have Questions?<br> We're Here to Help!</h2>
+            <p style="color: white;">Reach out to our friendly team for a free consultation and let's discuss how we can accelerate your career.</p>
+            <div class="contact-item">
+                <img src="https://img.freepik.com/free-icon/linkedin_318-246161.jpg" alt="LinkedIn">
+                <a href="https://www.linkedin.com/in/abhishek-v-613881324/?originalSubdomain=in" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+            </div>
+            <div class="contact-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC_fWfo4ZlEIF4bf6atK_tLD4CXX-FMxlNyg&s" alt="Instagram">
+                <a href="https://www.instagram.com/betweenbreaks.in?igsh=anc4azkzeWdwM3B3" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+            </div>
+            <div class="contact-item">
+                <img src="https://png.pngtree.com/png-vector/20190429/ourmid/pngtree-vector-mail-icon-png-image_995083.jpg" alt="Mail">
+                <span>abhishek.v@betweenbreaks.in</span>
+            </div>
+            <div class="contact-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone">
+                <span>Contact: +91 9000145015</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactPanel"><iframe src="contact.html"></iframe></div>
+    <div id="aboutPanel"><iframe id="aboutIframe" src="aboutus.html"></iframe></div>
+    <div id="clientPanel"><iframe src="clientstories.html"></iframe></div>
+    <div id="careerPanel"><iframe src="career.html"></iframe></div>
+    <div id="requestPanel"><iframe src="request.html"></iframe></div>
+    <div id="mediaPanel"><iframe src="media.html"></iframe></div>
+    <div id="addressPanel"><iframe src="address.html"></iframe></div>
+
+    <script>
+        // Function to close the mobile menu
+        function closeMobileMenu() {
+            const nav = document.getElementById("mainNav");
+            const menuToggle = document.querySelector(".menu-toggle");
+            if (nav.classList.contains("active")) {
+                nav.classList.remove("active");
+                menuToggle.classList.remove("active");
+            }
+        }
+        function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    }
+    
+
+        // Functions to open and close panels
+        function openPanel(panelId, iframeSrc = null) {
+            closeAllPanels();
+            const panel = document.getElementById(panelId);
+            if (iframeSrc) {
+                const iframe = panel.querySelector('iframe');
+                if (iframe) iframe.src = iframeSrc;
+            }
+            panel.style.top = "0";
+            closeMobileMenu();
+        }
+
+        function closePanel(panelId) {
+            document.getElementById(panelId).style.top = "-100%";
+        }
+
+        function closeAllPanels() {
+            closePanel("contactPanel");
+            closePanel("aboutPanel");
+            closePanel("clientPanel");
+            closePanel("careerPanel");
+            closePanel("requestPanel");
+            closePanel("mediaPanel");
+            closePanel("addressPanel");
+        }
+
+        // Specific panel functions using the new openPanel
+        function openContact() { openPanel("contactPanel", "contact.html"); }
+        function openAbout() { openPanel("aboutPanel", "aboutus.html"); }
+        function openClient() { openPanel("clientPanel", "clientstories.html"); }
+        function openCareer() { openPanel("careerPanel", "career.html"); }
+        function openRequest() { openPanel("requestPanel", "request.html"); }
+        function openAddress(){ openPanel("addressPanel", "address.html"); }
+        function openMedia() { openPanel("mediaPanel", "media.html"); }
+
+        // Functions for sections within aboutus.html
+        function openServiceSection() { openPanel("aboutPanel", "aboutus.html#services-section"); }
+        function openPriceSection() { openPanel("aboutPanel", "aboutus.html#pricing-section"); }
+        function openPartnershipSection() { openPanel("aboutPanel", "aboutus.html#partnership-section"); }
+
+        // Hamburger menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById("mainNav");
+            const menuToggle = document.querySelector(".menu-toggle");
+            nav.classList.toggle("active");
+            menuToggle.classList.toggle("active");
+        }
+
+        // Close mobile menu when a dropdown content link is clicked
+        document.querySelectorAll('.dropdown-content a').forEach(item => {
+            item.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Testimonial Carousel Logic
+        let currentTestimonial = 0;
+        const testimonials = document.querySelector('.testimonial-carousel');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const totalTestimonials = testimonialCards.length;
+
+        document.querySelector('.next-btn').addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateTestimonialCarousel();
+        });
+
+        document.querySelector('.prev-btn').addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            updateTestimonialCarousel();
+        });
+
+        function updateTestimonialCarousel() {
+            const offset = -currentTestimonial * 100;
+            testimonials.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Auto-advance carousel
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateTestimonialCarousel();
+        }, 8000); // Change testimonial every 8 seconds
+    </script>
+
+</body>
+</html>

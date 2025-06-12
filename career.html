@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Careers | BetweenBreaks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+      .faq-section {
+            padding: 80px 0;
+            background-color: #FFFACD;
+            text-align: center;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 50px auto 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden; /* For transition */
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #000222;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #F0F0F0;
+            border-bottom: 1px solid #E0E0E0;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #E6E6E6;
+        }
+
+        .faq-question .arrow {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: white;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .faq-answer.active {
+            max-height: 200px; /* Adjust as needed, should be large enough to contain content */
+            padding: 20px 25px;
+        }
+        .contact-wrapper {
+            display: flex;
+            justify-content: center; /* Center items for larger screens too */
+            background-color: #000222; /* Dark background for footer */
+            color: white;
+            padding: 50px 30px;
+            margin-top: 80px; /* Space from previous section */
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Increased gap between contact items */
+            width: 100%;
+            max-width: 400px; /* Limit width */
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #FFD700;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Increased gap */
+            font-size: 18px;
+            color: white;
+            justify-content: center; /* Center contact items */
+        }
+
+        .contact-item img {
+            width: 28px; /* Larger icons */
+            height: 28px;
+            object-fit: contain;
+            filter: brightness(0) invert(1); /* Make icons white */
+        }
+
+        .contact-item a {
+            color: #ADD8E6; /* Light Blue for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #FFD700; /* Gold on hover */
+            text-decoration: underline;
+        }
+
+
+
+  </style>
+</head>
+<body class="bg-[#FFF9DB] text-gray-800 font-sans">
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-100 text-gray-900 py-24 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-5xl font-bold mb-4">Join the Team That Builds the Future</h1>
+      <p class="text-lg mb-6">Whether you're a student, graduate, or seasoned professional — there's a place for you here.</p>
+      <a href="#openings" class="inline-block bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full hover:bg-gray-200 transition">Explore Roles</a>
+    </div>
+  </section>
+
+  <!-- Internship Section -->
+  <section id="internships" class="py-20 px-6 bg-[#FFF9DB]">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Internships</h2>
+      <p class="text-gray-600 mb-10">Real work. Real experience. Real impact.</p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-bullhorn"></i></div>
+          <h3 class="text-xl font-semibold mb-2">Marketing Intern</h3>
+          <p class="text-sm text-gray-600 mb-4">Help drive campaigns, write content, and analyze performance.</p>
+          <a href="#application-form" onclick="showForm()" class="text-indigo-600 font-semibold hover:underline">Apply Now</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-purple-600 text-4xl mb-4"><i class="fas fa-code"></i></div>
+          <h3 class="text-xl font-semibold mb-2">Frontend Developer Intern</h3>
+          <p class="text-sm text-gray-600 mb-4">Build responsive interfaces using React, Tailwind, and more.</p>
+          <a href="#application-form" onclick="showForm()" class="text-purple-600 font-semibold hover:underline">Apply Now</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-chart-line"></i></div>
+          <h3 class="text-xl font-semibold mb-2">Data Analyst Intern</h3>
+          <p class="text-sm text-gray-600 mb-4">Work with data to generate insights and dashboards.</p>
+          <a href="#application-form" onclick="showForm()" class="text-pink-600 font-semibold hover:underline">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Openings -->
+  <section id="openings" class="py-20 px-6 bg-[#FFF9DB]">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Internship Opportunities</h2>
+      <p class="text-gray-600 mb-10">Work with a passionate, collaborative, and innovative team.</p>
+
+      <div class="grid md:grid-cols-2 gap-8 text-left">
+        <div class="p-6 border-l-4 border-indigo-600 bg-white rounded shadow hover:shadow-md transition">
+          <h3 class="text-xl font-bold mb-1">HR Intern</h3>
+          <p class="text-gray-600 mb-2">Join our team as an HR Intern and get hands-on experience in recruitment, onboarding, employee engagement, and HR operations.</p>
+          <a href="#application-form" onclick="showForm()" class="text-indigo-600 font-semibold hover:underline">Apply Now</a>
+        </div>
+        <div class="p-6 border-l-4 border-purple-600 bg-white rounded shadow hover:shadow-md transition">
+          <h3 class="text-xl font-bold mb-1">Machine Learning Interns</h3>
+          <p class="text-gray-600 mb-2">Step into the world of intelligent systems as a Machine Learning Intern and work on real data-driven challenges that matter.</p>
+          <a href="#application-form" onclick="showForm()" class="text-purple-600 font-semibold hover:underline">Apply Now</a>
+        </div>
+        <div class="p-6 border-l-4 border-pink-600 bg-white rounded shadow hover:shadow-md transition">
+          <h3 class="text-xl font-bold mb-1">Web Development</h3>
+          <p class="text-gray-600 mb-2">Join us as a Web Development Intern and bring ideas to life through interactive, responsive, and visually compelling websites.</p>
+          <a href="#application-form" onclick="showForm()" class="text-pink-600 font-semibold hover:underline">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does the resume optimization process take?</span>
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Typically, a complete resume optimization and review process takes between 3-5 business days after we receive all necessary information from you. Expedited services may be available upon request.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you guarantee job placement?</span>
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While we cannot guarantee job placement (as hiring decisions are ultimately made by employers), we guarantee that our services will significantly improve your chances of securing interviews and receiving offers. We provide you with the tools and strategies to succeed.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What industries do you specialize in?</span>
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our expertise spans a wide range of industries, including IT, finance, marketing, healthcare, engineering, and more. Our coaches have diverse backgrounds, allowing us to cater to various professional fields.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I get a custom package tailored to my needs?</span>
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely! We understand that every individual's career journey is unique. Please contact us to discuss your specific requirements, and we'll be happy to create a customized service package for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  <!-- Application Form (Hidden by Default) -->
+  <section id="application-form" class="py-20 px-6 bg-white hidden">
+    <div class="max-w-3xl mx-auto bg-[#FFFBE6] p-8 rounded-xl shadow">
+      <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Application Form</h2>
+      <form action="#" method="POST" enctype="multipart/form-data" class="space-y-6">
+  <div>
+    <label class="block mb-2 font-medium text-gray-700">Full Name</label>
+    <input type="text" name="name" required class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+  </div>
+
+  <div>
+    <label class="block mb-2 font-medium text-gray-700">Email</label>
+    <input type="email" name="email" required class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+  </div>
+
+  <div>
+    <label class="block mb-2 font-medium text-gray-700">Phone Number</label>
+    <input type="tel" name="phone" required class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+  </div>
+
+  <div>
+    <label class="block mb-2 font-medium text-gray-700">Experience (in years)</label>
+    <input type="number" name="experience" min="0" class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+  </div>
+
+  <!-- New Dropdown for Area of Interest -->
+  <div>
+    <label class="block mb-2 font-medium text-gray-700">Area of Interest</label>
+    <select name="interest" required class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">
+      <option value="">Select an option</option>
+      <option value="Machine Learning">Machine Learning</option>
+      <option value="Web Development">Web Development</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block mb-2 font-medium text-gray-700">Upload Resume</label>
+    <input type="file" name="resume" required class="w-full text-gray-700">
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="bg-yellow-400 text-white font-semibold px-6 py-3 rounded-full hover:bg-yellow-500 transition">Submit Application</button>
+  </div>
+</form>
+
+    </div>
+  </section>
+
+  <script>
+    function showForm() {
+      document.getElementById("application-form").classList.remove("hidden");
+    }
+  </script>
+  <div class="contact-wrapper">
+    <div class="contact-section">
+      <h2>Still Have Questions?<br> We're Here to Help!</h2>
+      <p>Reach out to our friendly team for a free consultation and let's discuss how we can accelerate your career.</p>
+      <div class="contact-item">
+        <img src="https://img.freepik.com/free-icon/linkedin_318-246161.jpg" alt="LinkedIn">
+        <a href="https://www.linkedin.com/in/abhishek-v-613881324/?originalSubdomain=in" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      </div>
+      <div class="contact-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC_fWfo4ZlEIF4bf6atK_tLD4CXX-FMxlNyg&s" alt="Instagram">
+        <a href="https://www.instagram.com/betweenbreaks.in?igsh=anc4azkzeWdwM3B3" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+      </div>
+      <div class="contact-item">
+        <img src="https://png.pngtree.com/png-vector/20190429/ourmid/pngtree-vector-mail-icon-png-image_995083.jpg" alt="Mail">
+        <span>abhishek.v@betweenbreaks.in</span>
+      </div>
+      <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone">
+        <span>Contact: +91 9000145015</span>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

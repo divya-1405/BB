@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Stories - BB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+     .contact-wrapper {
+            display: flex;
+            justify-content: center; /* Center items for larger screens too */
+            background-color: #000222; /* Dark background for footer */
+            color: white;
+            padding: 50px 30px;
+            margin-top: 80px; /* Space from previous section */
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Increased gap between contact items */
+            width: 100%;
+            max-width: 400px; /* Limit width */
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #FFD700;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Increased gap */
+            font-size: 18px;
+            color: white;
+            justify-content: center; /* Center contact items */
+        }
+
+        .contact-item img {
+            width: 28px; /* Larger icons */
+            height: 28px;
+            object-fit: contain;
+            filter: brightness(0) invert(1); /* Make icons white */
+        }
+
+        .contact-item a {
+            color: #ADD8E6; /* Light Blue for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #FFD700; /* Gold on hover */
+            text-decoration: underline;
+        }
+  </style>
+</head>
+<body class="bg-[#FFF9DB] text-gray-800 font-sans">
+
+  <!-- Hero Section -->
+  <section class="bg-[#FFF9DB] text-gray-900 py-16 px-6 text-center">
+    <h1 class="text-4xl font-bold mb-4">Client Success Stories</h1>
+    <p class="text-lg max-w-3xl mx-auto">Real results from companies who partnered with us to transform their vision into success.</p>
+  </section>
+
+  <!-- Story 1 -->
+  <section class="bg-[#FFF9DB] py-12 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBodc5Hzb1jw0KDh93AFTe9FCTN7JKZaR1A&s" alt="Client 1" class="w-full h-auto rounded-xl shadow-md">
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800">Vij</h2>
+        <h3 class="text-lg font-semibold mt-4 mb-2 text-gray-700">📌 The Challenge</h3>
+        <p class="text-gray-700 mb-4">A student who struggled for 4 years to get placed in a company due to his resume.</p>
+
+        <h3 class="text-lg font-semibold mb-2 text-gray-700">💡 Our Solution</h3>
+        <p class="text-gray-700 mb-4">We created his resume and guided him through the job preparation process.</p>
+
+        <h3 class="text-lg font-semibold mb-2 text-gray-700">📈 The Results</h3>
+        <ul class="list-disc ml-5 text-gray-700 mb-4">
+          <li>Got placed within 5 months</li>
+          <li>Offered 25 LPA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story 2 -->
+  <section class="bg-[#FFF9DB] py-12 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="md:order-2">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRczldfsgBqiSBGVOxWyjlRW1DR9PXk1yP-hw&s" alt="Client 2" class="w-full h-auto rounded-xl shadow-md">
+      </div>
+      <div class="md:order-1">
+        <h2 class="text-2xl font-bold text-gray-800">Ram</h2>
+
+        <h3 class="text-lg font-semibold mt-4 mb-2 text-gray-700">📌 The Challenge</h3>
+        <p class="text-gray-700 mb-4">He lacked communication skills, which affected his interviews.</p>
+
+        <h3 class="text-lg font-semibold mb-2 text-gray-700">💡 Our Solution</h3>
+        <p class="text-gray-700 mb-4">We trained him with regular sessions to improve his communication.</p>
+
+        <h3 class="text-lg font-semibold mb-2 text-gray-700">📈 The Results</h3>
+        <ul class="list-disc ml-5 text-gray-700 mb-4">
+          <li>Got placed within 6 months</li>
+          <li>Offered 20 LPA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[#FFF9DB] text-gray-900 py-16 text-center px-6">
+    <h2 class="text-3xl font-semibold mb-4">Ready to write your own success story?</h2>
+    <p class="mb-6">Let’s build the future together. Tell us your vision — we’ll help make it real.</p>
+    <a href="contact.html" class="bg-white text-blue-700 px-6 py-3 rounded-md font-bold shadow-lg hover:bg-gray-100 transition">Contact Us</a>
+  </section>
+  <div class="contact-wrapper">
+    <div class="contact-section">
+      <h2>Still Have Questions?<br> We're Here to Help!</h2>
+      <p>Reach out to our friendly team for a free consultation and let's discuss how we can accelerate your career.</p>
+      <div class="contact-item">
+        <img src="https://img.freepik.com/free-icon/linkedin_318-246161.jpg" alt="LinkedIn">
+        <a href="https://www.linkedin.com/in/abhishek-v-613881324/?originalSubdomain=in" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+      </div>
+      <div class="contact-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC_fWfo4ZlEIF4bf6atK_tLD4CXX-FMxlNyg&s" alt="Instagram">
+        <a href="https://www.instagram.com/betweenbreaks.in?igsh=anc4azkzeWdwM3B3" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+      </div>
+      <div class="contact-item">
+        <img src="https://png.pngtree.com/png-vector/20190429/ourmid/pngtree-vector-mail-icon-png-image_995083.jpg" alt="Mail">
+        <span>abhishek.v@betweenbreaks.in</span>
+      </div>
+      <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone">
+        <span>Contact: +91 9000145015</span>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

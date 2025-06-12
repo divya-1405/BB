@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Services | BetweenBreaks®</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Embedded CSS */
+    
+    .contact-wrapper {
+      display: flex;
+      justify-content: center; /* Center items for larger screens too */
+      background-color: #000222; /* Dark background for footer */
+      color: white;
+      padding: 50px 30px;
+      margin-top: 80px; /* Space from previous section */
+      box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* Increased gap between contact items */
+      width: 100%;
+      max-width: 400px; /* Limit width */
+      text-align: center;
+    }
+
+    .contact-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 300px;
+      font-weight: 100;
+      color: #FFD700;
+      margin-bottom: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* Increased gap */
+      font-size: 18px;
+      color: white;
+      justify-content: center; /* Center contact items */
+    }
+
+    .contact-item img {
+      width: 28px; /* Larger icons */
+      height: 28px;
+      object-fit: contain;
+      filter: brightness(0) invert(1); /* Make icons white */
+    }
+
+    .contact-item a {
+      color: #ADD8E6; /* Light Blue for links */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: #FFD700; /* Gold on hover */
+      text-decoration: underline;
+    }
+
+    /* Animation for testimonial cards */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .testimonial-card {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .contact-section h2 {
+        font-size: 2rem;
+      }
+
+      .contact-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact-item img {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+    }
+
+    /* Form Reveal Animation */
+    .form-reveal {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    .form-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <script>
+    
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Testimonial animation
+      const testimonialObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = `fadeIn 0.6s ease-out forwards`;
+            entry.target.style.animationDelay = `${entry.target.dataset.delay || '0s'}`;
+            testimonialObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.testimonial-card').forEach(card => {
+        testimonialObserver.observe(card);
+      });
+
+      // Form Reveal Logic
+      const contactFormSection = document.getElementById('contact-form-section');
+      const openFormButtons = document.querySelectorAll('.open-contact-form');
+      const closeFormButton = document.getElementById('closeForm');
+      const contactForm = document.getElementById('contactForm');
+
+      function showForm() {
+        contactFormSection.classList.remove('hidden');
+        // Trigger reflow to ensure transition works
+        void contactFormSection.offsetWidth;
+        contactFormSection.classList.add('active');
+        contactFormSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function hideForm() {
+        contactFormSection.classList.remove('active');
+        contactFormSection.classList.add('hidden'); // Hide after transition (or immediately if no transition)
+      }
+
+      openFormButtons.forEach(button => {
+        button.addEventListener('click', showForm);
+      });
+
+      if (closeFormButton) {
+        closeFormButton.addEventListener('click', hideForm);
+      }
+
+      // Form submission handling
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault(); // Prevent default form submission
+          // In a real application, you would send this data to your server
+          // For now, let's just alert and hide the form
+          alert('Thank you for your interest! We\'ve received your details and will contact you shortly.');
+          contactForm.reset(); // Clear the form fields
+          hideForm(); // Hide the form after submission
+        });
+      }
+    });
+  </script>
+</head>
+<body class="bg-[#FFF9DB] text-gray-900 font-sans">
+
+  <header class="sticky top-0 z-50 bg-gradient-to-r from-yellow-400 to-yellow-300 text-black text-center py-3 shadow-md animate-pulse">
+    <div class="container mx-auto px-4">
+      🚀 Start your career transformation today with BetweenBreaks® | <span class="font-semibold">Limited spots available!</span>
+    </div>
+  </header>
+
+  <main class="px-4 py-8 md:px-8 lg:px-16 max-w-7xl mx-auto">
+
+    <section class="mb-16 text-center">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-orange-600">
+        Transform Your Career
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
+        Professional resume crafting and personalized placement guidance to land your dream job
+      </p>
+      <div class="mt-8">
+        <button class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg open-contact-form">
+          Get Started Today <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </section>
+
+    <section aria-labelledby="services-title" class="mb-20" id="services-section">
+      <div class="text-center mb-16">
+        <h2 id="services-title" class="text-4xl font-extrabold mb-4 relative inline-block">
+          <span class="relative z-10">Our Services</span>
+          <span class="absolute bottom-0 left-0 w-full h-3 bg-yellow-300 z-0 opacity-30"></span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Comprehensive career solutions tailored to your unique needs
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border-l-4 border-yellow-400">
+          <div class="flex items-center mb-6">
+            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+              <i class="fas fa-file-alt text-yellow-600 text-2xl"></i>
+            </div>
+            <h3 class="text-3xl font-bold">ATS-Optimized Resume</h3>
+          </div>
+          <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            We craft resumes that beat Applicant Tracking Systems while impressing hiring managers. Our experts highlight your skills and achievements in a way that gets noticed.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span>Keyword optimization for ATS</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span>Professional formatting and design</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span>Industry-specific templates</span>
+            </li>
+          </ul>
+          <button class="text-yellow-600 font-semibold hover:text-yellow-700 flex items-center open-contact-form">
+            Learn more <i class="fas fa-chevron-right ml-2 text-sm"></i>
+          </button>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border-l-4 border-blue-400">
+          <div class="flex items-center mb-6">
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i class="fas fa-bullseye text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-3xl font-bold">Strategic Placement Guidance</h3>
+          </div>
+          <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            From career planning to offer negotiation, we provide end-to-end support for your job search journey.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span>1:1 career coaching sessions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span>Mock interviews with feedback</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span>Personalized job recommendations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span>Salary negotiation strategies</span>
+            </li>
+          </ul>
+          <button class="text-blue-600 font-semibold hover:text-blue-700 flex items-center open-contact-form">
+            Learn more <i class="fas fa-chevron-right ml-2 text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="pricing-title" class="my-20" id="pricing-section">
+      <div class="text-center mb-16">
+        <h2 id="pricing-title" class="text-4xl font-extrabold mb-4">Simple, Transparent Pricing</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Choose the plan that fits your career goals
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-2 border-gray-100">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold mb-2">3-Month Plan</h3>
+            <p class="text-4xl font-extrabold mb-4">₹2,500</p>
+            <p class="text-gray-600">Perfect for focused job search</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span>Resume makeover</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span>4 coaching sessions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span>Job search strategy</span>
+            </li>
+          </ul>
+          <button class="w-full bg-gray-800 text-white py-3 rounded-lg font-medium hover:bg-black transition duration-300 open-contact-form">
+            Get Started
+          </button>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-600 to-blue-600 text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 relative">
+          <div class="absolute top-0 right-0 bg-yellow-400 text-black px-3 py-1 text-sm font-bold rounded-bl-lg rounded-tr-lg">
+            MOST POPULAR
+          </div>
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold mb-2">6-Month Plan</h3>
+            <p class="text-4xl font-extrabold mb-4">₹5,000</p>
+            <p class="text-purple-100">Best value for career transformation</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check text-yellow-300 mt-1 mr-2"></i>
+              <span>Everything in 3-month plan</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-yellow-300 mt-1 mr-2"></i>
+              <span>12 coaching sessions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-yellow-300 mt-1 mr-2"></i>
+              <span>LinkedIn profile optimization</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-yellow-300 mt-1 mr-2"></i>
+              <span>Unlimited resume revisions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-yellow-300 mt-1 mr-2"></i>
+              <span>Priority job referrals</span>
+            </li>
+          </ul>
+          <button class="w-full bg-white text-purple-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition duration-300 open-contact-form">
+            Get Started
+          </button>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-2 border-gray-100">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold mb-2">Custom Plan</h3>
+            <p class="text-4xl font-extrabold mb-4">Let's Talk</p>
+            <p class="text-gray-600">Tailored for your unique needs</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span>Personalized service package</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span>Enterprise solutions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span>Flexible scheduling</span>
+            </li>
+          </ul>
+          <button class="w-full bg-gray-800 text-white py-3 rounded-lg font-medium hover:bg-black transition duration-300 open-contact-form">
+            Contact Us
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="testimonials-title" class="my-20" id="testimonials-section">
+      <div class="text-center mb-16">
+        <h2 id="testimonials-title" class="text-4xl font-extrabold mb-4">Success Stories</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Hear from professionals who transformed their careers with us
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg opacity-0" data-delay="0.1s">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya K." class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold">Priya K.</h4>
+              <p class="text-yellow-600">Software Engineer at Google</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic">"BetweenBreaks® helped me optimize my resume for ATS systems and prepare for technical interviews. I went from no callbacks to 3 offers in 2 months!"</p>
+          <div class="mt-4 text-yellow-500">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg opacity-0" data-delay="0.3s">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul S." class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold">Rahul S.</h4>
+              <p class="text-yellow-600">Product Manager at Amazon</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic">"The career coaching sessions were transformative. My coach helped me negotiate a 40% salary increase from my previous role. Worth every rupee!"</p>
+          <div class="mt-4 text-yellow-500">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg opacity-0" data-delay="0.5s">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ananya P." class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold">Ananya P.</h4>
+              <p class="text-yellow-600">Data Scientist at Microsoft</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic">"After a 2-year career break, I thought finding a good job would be impossible. BetweenBreaks® helped me frame my break as an asset and land my dream role."</p>
+          <div class="mt-4 text-yellow-500">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="partnership-title" class="bg-white py-16 px-10 md:px-20 mt-20 text-black rounded-2xl" id="partnership-section">
+      <h2 id="partnership-title" class="text-3xl font-bold text-center mb-10">
+        <span class="text-blue-600">200+</span> Companies have hired <span class="font-semibold">betweenbreaks<sup>®</sup> students</span>
+      </h2>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="h-10 mx-auto opacity-80 hover:opacity-100 transition" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="h-10 mx-auto opacity-80 hover:opacity-100 transition" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle" class="h-10 mx-auto opacity-80 hover:opacity-100 transition" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="h-10 mx-auto opacity-80 hover:opacity-100 transition" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="h-10 mx-auto opacity-80 hover:opacity-100 transition" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Logo.svg" alt="Samsung" class="h-8 mx-auto opacity-80 hover:opacity-100 transition" />
+      </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white py-16 px-8 rounded-3xl text-center my-20">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready for Your Career Breakthrough?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Join thousands who've transformed their careers with BetweenBreaks®
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <button class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg open-contact-form">
+          Get Started Now
+        </button>
+        <button class="bg-transparent border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition duration-300 transform hover:scale-105 open-contact-form">
+          Book a Free Consultation
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <section id="contact-form-section" class="hidden form-reveal bg-white p-8 md:p-12 rounded-2xl shadow-xl max-w-2xl mx-auto mb-20 relative">
+    <button id="closeForm" class="absolute top-4 right-6 bg-transparent border-none text-gray-500 hover:text-gray-900 text-3xl cursor-pointer">&times;</button>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-orange-600">
+      Get in Touch
+    </h2>
+    <p class="text-lg text-gray-700 text-center mb-8">
+      Fill out the form below and our team will get back to you shortly to discuss your career goals.
+    </p>
+    <form id="contactForm" class="space-y-6">
+      <div>
+        <label for="name" class="block text-lg font-semibold text-gray-800 mb-2">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required
+               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition duration-200">
+      </div>
+      <div>
+        <label for="phone" class="block text-lg font-semibold text-gray-800 mb-2">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="e.g., +91 9876543210" required
+               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition duration-200">
+      </div>
+      <div>
+        <label for="email" class="block text-lg font-semibold text-gray-800 mb-2">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required
+               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition duration-200">
+      </div>
+      <div>
+        <label for="interest" class="block text-lg font-semibold text-gray-800 mb-2">Area of Interest</label>
+        <select id="interest" name="interest" required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition duration-200 bg-white">
+          <option value="">Select an area</option>
+          <option value="resume_writing">Resume & Cover Letter Writing</option>
+          <option value="interview_prep">Interview Preparation</option>
+          <option value="career_coaching">Career Coaching & Planning</option>
+          <option value="job_placement">Job Placement Assistance</option>
+          <option value="linkedin_optimization">LinkedIn Profile Optimization</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="message" class="block text-lg font-semibold text-gray-800 mb-2">Your Message (Optional)</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell us more about your career goals..."
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition duration-200"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-yellow-500 text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition duration-300 transform hover:scale-105 shadow-lg">
+        Submit Inquiry <i class="fas fa-paper-plane ml-2"></i>
+      </button>
+    </form>
+  </section>
+
+  <div class="contact-wrapper">
+        <div class="contact-section">
+            <h1>Still Have Questions?<br> We're Here to Help!</h1>
+            <p style="color: white;">Reach out to our friendly team for a free consultation and let's discuss how we can accelerate your career.</p>
+            <div class="contact-item">
+                <img src="https://img.freepik.com/free-icon/linkedin_318-246161.jpg" alt="LinkedIn">
+                <a href="https://www.linkedin.com/in/abhishek-v-613881324/?originalSubdomain=in" target="_blank" rel="noopener noreferrer">Follow us on LinkedIn</a>
+            </div>
+            <div class="contact-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC_fWfo4ZlEIF4bf6atK_tLD4CXX-FMxlNyg&s" alt="Instagram">
+                <a href="https://www.instagram.com/betweenbreaks.in?igsh=anc4azkzeWdwM3B3" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+            </div>
+            <div class="contact-item">
+                <img src="https://png.pngtree.com/png-vector/20190429/ourmid/pngtree-vector-mail-icon-png-image_995083.jpg" alt="Mail">
+                <span>abhishek.v@betweenbreaks.in</span>
+            </div>
+            <div class="contact-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Phone">
+                <span>Contact: +91 9000145015</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
