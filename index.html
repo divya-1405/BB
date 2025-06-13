@@ -288,27 +288,28 @@
         }
 
         /* Base styles for mobile (one by one) */
+/* Base styles (Default: Mobile View - 1 card per row) */
 .highlights {
-    display: flex;           /* Enables flexbox for the container */
-    flex-wrap: wrap;         /* Allows items to wrap to a new line */
-    justify-content: center; /* Centers the individual cards horizontally */
-    gap: 40px;               /* Adds vertical space between cards */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers the single card on small screens */
+    gap: 40px; /* Space between cards (vertical for stacked, horizontal for side-by-side) */
     margin-top: 30px;
 }
 
 .highlight {
     background: white;
     padding: 30px;
+    width: 320px; /* Fixed width for the cards */
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     border-radius: 12px;
     text-align: left;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     border-top: 5px solid #FFD700;
 
-    /* These are the key properties for the "one by one" desktop layout: */
-    flex-basis: 100%;    /* Tells each card to try and occupy 100% of the available width */
-    max-width: 320px;    /* Caps the actual width of the card at 320px */
-    width: 320px;        /* Sets a preferred width */
+    /* For mobile and very large screens (default), force stacking */
+    flex-basis: 100%;    /* Tries to make each item take 100% width, forcing it to its own row */
+    max-width: 320px;    /* Caps the actual width to prevent stretching on larger screens when stacked */
 }
 
 .highlight:hover {
@@ -328,6 +329,38 @@
     line-height: 1.6;
     color: #555;
     margin-bottom: 0;
+}
+
+/* --- Media Queries for Desktop Layouts --- */
+
+/* Desktop View (Medium Screens: 2 cards side-by-side) */
+/* This breakpoint is for screens typically from tablets up to many standard desktops */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .highlight {
+        /* Calculate width for two cards, accounting for the 40px gap */
+        /* (100% of container - 40px gap) / 2 cards = 50% - 20px per card */
+        width: calc(50% - 20px);
+        flex-basis: auto; /* Reset flex-basis to allow flexbox to naturally position items */
+        max-width: 450px; /* Optional: Prevent cards from becoming excessively wide in 2-column layout */
+    }
+    .highlights {
+        justify-content: center; /* Adjust as needed, 'center' or 'space-around' */
+        /* You might want to constrain the max-width of .highlights here too for better centering */
+        /* max-width: 960px; */ /* Example max-width for 2-column layout */
+    }
+}
+
+/* Desktop Site (Large Screens: Back to 1 card per row) */
+/* This breakpoint applies to larger desktop monitors */
+@media (min-width: 1200px) {
+    .highlight {
+        width: 320px; /* Maintain consistent card width */
+        flex-basis: 100%; /* Force back to one card per row */
+        max-width: 400px; /* You can make it slightly wider if desired for large screens */
+    }
+    .highlights {
+        justify-content: center; /* Ensure the single card is centered */
+    }
 }
         /* --- NEW SECTIONS STYLES --- */
 
