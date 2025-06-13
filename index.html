@@ -289,10 +289,10 @@
 
         /* Base styles for mobile (one by one) */
 .highlights {
-    display: flex;       /* Enables flexbox layout for the container */
-    flex-wrap: wrap;     /* Allows items to wrap to the next line if space is insufficient */
-    justify-content: center; /* Horizontally centers the individual cards within the container */
-    gap: 40px;           /* Adds space between the cards vertically */
+    display: flex;           /* Enables flexbox for the container */
+    flex-wrap: wrap;         /* Allows items to wrap to a new line */
+    justify-content: center; /* Centers the individual cards horizontally */
+    gap: 40px;               /* Adds vertical space between cards */
     margin-top: 30px;
 }
 
@@ -305,15 +305,15 @@
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     border-top: 5px solid #FFD700;
 
-    /* Key properties for "one after one card" layout: */
-    flex-basis: 100%;    /* Makes each item attempt to take 100% of the available width in the flex container */
-    max-width: 320px;    /* Caps the maximum width of each card, so it doesn't stretch too wide on large screens */
-    width: 320px;        /* Provides a fallback width and preferred size */
+    /* These are the key properties for the "one by one" desktop layout: */
+    flex-basis: 100%;    /* Tells each card to try and occupy 100% of the available width */
+    max-width: 320px;    /* Caps the actual width of the card at 320px */
+    width: 320px;        /* Sets a preferred width */
 }
 
 .highlight:hover {
-    transform: translateY(-8px); /* Lifts the card slightly on hover */
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* More prominent shadow on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
 .highlight h3 {
