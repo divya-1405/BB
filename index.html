@@ -86,11 +86,11 @@
     }
 
     .navbar .logo img {
-      height:6px; /* Default size for desktop */
-      width: auto;
-      transition: all 0.3s ease;
-      border-radius: 50%; /* Make logo round if preferred */
-    }
+            height: 80px; /* Adjusted default size for desktop - Make it visible! */
+            width: auto;
+            transition: all 0.3s ease;
+            border-radius: 50%; /* Make logo round if preferred */
+        }
 
     .navbar nav {
       display: flex;
@@ -1113,9 +1113,11 @@
             }
         }
         function toggleMenu() {
-      const nav = document.getElementById('mainNav');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    }
+            const nav = document.getElementById('mainNav');
+            const menuToggle = document.querySelector(".menu-toggle");
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
     
 
         // Functions to open and close panels
